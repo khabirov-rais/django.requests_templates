@@ -28,45 +28,45 @@ DATA = {
     # можете добавить свои рецепты ;)
 }
 
-def home_view(request):
-    template_name = 'app/home.html'
+# def home_view(request):
+#     template_name = 'app/home.html'
 
-    pages = {
-        'Главная страница': reverse('home'),
-        'Показать рецепт омлета': reverse('omlet'),
-        'Показать рецепт пасты': reverse('pasta'),
-        'Показать рецепт бутера': reverse('buter'),
-        'Рецепт окрошки(на квасе)': reverse('okroshka')
-    }
-    context = {
-        'pages': pages
-    }
-    return render(request, template_name, context)
+#     pages = {
+#         'Главная страница': reverse('home'),
+#         'Показать рецепт омлета': reverse('dish'),
+#         'Показать рецепт пасты': reverse('dish'),
+#         'Показать рецепт бутера': reverse('dish'),
+#         'Рецепт окрошки(на квасе)': reverse('dish')
+#     }
+#     context = {
+#         'pages': pages
+#     }
+#     return render(request, template_name, context)
 
-def omlet(request):
+def dish_view(request, dish):
     servings = int(request.GET.get('servings', 1))
-    DATA['omlet'].update((key, value * servings) for key, value in DATA['omlet'].items())
-    context = {'recipe': DATA['omlet']}
+    DATA[f'{dish}'].update((key, value * servings) for key, value in DATA[f'{dish}'].items())
+    context = {'recipe': DATA[f'{dish}']}
     return render(request, 'calculator/index.html', context)
     # return HttpResponse(f'{DATA['omlet']}')
 
-def pasta(request):
-    servings = int(request.GET.get('servings', 1))
-    DATA['pasta'].update((key, value * servings) for key, value in DATA['pasta'].items())
-    context = {'recipe': DATA['pasta']}
-    return render(request, 'calculator/index.html', context)
+# def pasta(request):
+#     servings = int(request.GET.get('servings', 1))
+#     DATA['pasta'].update((key, value * servings) for key, value in DATA['pasta'].items())
+#     context = {'recipe': DATA['pasta']}
+#     return render(request, 'calculator/index.html', context)
 
-def buter(request):
-    servings = int(request.GET.get('servings', 1))
-    DATA['buter'].update((key, value * servings) for key, value in DATA['buter'].items())
-    context = {'recipe': DATA['buter']}
-    return render(request, 'calculator/index.html', context)
+# def buter(request):
+#     servings = int(request.GET.get('servings', 1))
+#     DATA['buter'].update((key, value * servings) for key, value in DATA['buter'].items())
+#     context = {'recipe': DATA['buter']}
+#     return render(request, 'calculator/index.html', context)
 
-def okroshka(request):
-    servings = int(request.GET.get('servings', 1))
-    DATA['okroshka'].update((key, value * servings) for key, value in DATA['okroshka'].items())
-    context = {'recipe': DATA['okroshka']}
-    return render(request, 'calculator/index.html', context)
+# def okroshka(request):
+#     servings = int(request.GET.get('servings', 1))
+#     DATA['okroshka'].update((key, value * servings) for key, value in DATA['okroshka'].items())
+#     context = {'recipe': DATA['okroshka']}
+#     return render(request, 'calculator/index.html', context)
 
 # Напишите ваш обработчик. Используйте DATA как источник данных
 # Результат - render(request, 'calculator/index.html', context)

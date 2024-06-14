@@ -16,14 +16,14 @@ Including another URLconf
 
 from django.urls import path
 
-from calculator.views import home_view, omlet, buter, pasta, okroshka
+from calculator.views import dish_view
 
 
 urlpatterns = [
-    path('', home_view, name='home'),
-    path('omlet/', omlet, name = 'omlet'),
-    path('pasta/', pasta, name = 'pasta'),
-    path('buter/', buter, name = 'buter'),
-    path('okroshka/', okroshka, name = 'okroshka')
-    # здесь зарегистрируйте вашу view-функцию
+    # path('', home_view, name='home'),
+    path('<str:dish>/', dish_view, name = 'dish'),
+    # path('pasta/', pasta, name = 'pasta'),
+    # path('buter/', buter, name = 'buter'),
+    # path('okroshka/', okroshka, name = 'okroshka')
+    # # здесь зарегистрируйте вашу view-функцию
 ]
